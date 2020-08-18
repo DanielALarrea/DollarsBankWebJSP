@@ -24,12 +24,12 @@ public class TransactionUtility {
 	}
 	
 	public static void givingFundTransfer(Account accountFrom, String userTo, float transfer) {
-		String transaction = "User [" + accountFrom.getUserId() + "] transferred $" + transfer + " to user [" + userTo + "]";
+		String transaction = "Transferred $" + transfer + " to user [" + userTo + "]";
 		accountFrom.pushRecentTransaction(transaction);
 	}
 	
 	public static void receivingFundTransfer(Account accountTo, String userFrom, float transfer) {
-		String transaction = "User [" + accountTo.getUserId() + "] received $" + transfer + " from user [" + userFrom + "]";
+		String transaction = "Received $" + transfer + " from user [" + userFrom + "]";
 		accountTo.pushRecentTransaction(transaction);
 	}
 

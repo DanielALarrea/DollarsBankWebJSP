@@ -13,13 +13,13 @@ public class ErrorUtility {
 	public static String errorTransferPrefix() {
 		return "Transfer failed: ";
 	}
-
-	public static String errorNotNumber() {
-		return "Expected number input";
+	
+	public static String errorAccountCreationPrefix() {
+		return "Account creation failed: ";
 	}
 	
 	public static String errorNotPositive() {
-		return "Expected positive number";
+		return "Expected positive number input";
 	}
 	
 	public static String errorNotEnough() {
@@ -32,6 +32,14 @@ public class ErrorUtility {
 	
 	public static String errorExistingUser() {
 		return "User already exists with that ID";
+	}
+	
+	public static String errorNotPasswordCriteria() {
+		return "Password does not match criteria";
+	}
+	
+	public static String errorNotPhone() {
+		return "";
 	}
 	
 }

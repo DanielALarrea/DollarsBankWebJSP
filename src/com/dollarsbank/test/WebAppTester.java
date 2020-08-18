@@ -110,6 +110,14 @@ class WebAppTester {
 		WebAppController.transferFunds(testAccount, testAccount2.getUserId(), 20);
 		WebAppController.transferFunds(testAccount2, testAccount.getUserId(), 5);
 		
-		WebAppController.displayTransactions(testAccount, 5);
+		WebAppController.displayTransactions(testAccount, 6);
+	}
+	
+	@Test
+	void accountCreateTestSuccess() {
+		MockDatabase.initDatabase();
+		String phoneNum = "1234567890";
+		WebAppController.createAccount("Name", "Address", phoneNum, "X0003", "P@ssword", 100.0f);
+		assertEquals("123-456-7890", InputCheckUtility.convertPhoneForm(phoneNum));
 	}
 }
