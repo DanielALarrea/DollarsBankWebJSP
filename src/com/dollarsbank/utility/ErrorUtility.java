@@ -1,6 +1,18 @@
 package com.dollarsbank.utility;
 
 public class ErrorUtility {
+	
+	public static String errorDepositPrefix() {
+		return "Deposit failed: ";
+	}
+	
+	public static String errorWithdrawPrefix() {
+		return "Withdraw failed: ";
+	}
+	
+	public static String errorTransferPrefix() {
+		return "Transfer failed: ";
+	}
 
 	public static String errorNotNumber() {
 		return "Expected number input";
@@ -16,6 +28,10 @@ public class ErrorUtility {
 	
 	public static String errorUserNotFound() {
 		return "No user found matching that ID";
+	}
+	
+	public static String errorExistingUser() {
+		return "User already exists with that ID";
 	}
 	
 }

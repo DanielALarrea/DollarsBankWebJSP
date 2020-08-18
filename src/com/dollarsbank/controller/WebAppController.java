@@ -12,7 +12,7 @@ public class WebAppController {
 			account.deposit(deposit);
 			TransactionUtility.depositTransaction(deposit, account);
 		} else {
-			System.out.println(ErrorUtility.errorNotPositive());
+			System.out.println(ErrorUtility.errorDepositPrefix() + ErrorUtility.errorNotPositive());
 		}
 	}
 
@@ -22,10 +22,10 @@ public class WebAppController {
 				account.withdraw(withdraw);
 				TransactionUtility.withdrawTransaction(withdraw, account);
 			} else {
-				System.out.println(ErrorUtility.errorNotEnough());
+				System.out.println(ErrorUtility.errorWithdrawPrefix() + ErrorUtility.errorNotEnough());
 			}
 		} else {
-			System.out.println(ErrorUtility.errorNotPositive());
+			System.out.println(ErrorUtility.errorWithdrawPrefix() + ErrorUtility.errorNotPositive());
 		}
 	}
 
@@ -39,13 +39,17 @@ public class WebAppController {
 					accountTo.deposit(transfer);
 					TransactionUtility.receivingFundTransfer(accountTo, accountFrom.getUserId(), transfer);
 				} else {
-					System.out.println(ErrorUtility.errorNotEnough());
+					System.out.println(ErrorUtility.errorTransferPrefix() + ErrorUtility.errorNotEnough());
 				}
 			} else {
-				System.out.println(ErrorUtility.errorNotPositive());
+				System.out.println(ErrorUtility.errorTransferPrefix() + ErrorUtility.errorNotPositive());
 			}
 		} else {
-			System.out.println(ErrorUtility.errorUserNotFound());
+			System.out.println(ErrorUtility.errorTransferPrefix() + ErrorUtility.errorUserNotFound());
 		}
+	}
+	
+	public static void displayTransactions(Account account, int x) {
+		System.out.println(account.xMostRecentTransaction(x));
 	}
 }

@@ -19,14 +19,14 @@ public class InputCheckUtility {
 	// For withdrawing and transferring funds
 	public static boolean isValidWithdraw(float input, Account account) {
 		boolean isValid = false;
-		if(input >= account.getSavings()) {
+		if(input < account.getSavings()) {
 			isValid = true;
 		}
 		
 		return isValid;
 	}
 	
-	// For fund transfer
+	// For fund transfer and account creation
 	public static boolean isExistingUser(String userID) {
 		boolean userExists = false;
 		for (Customer customer : MockDatabase.mockDB) {

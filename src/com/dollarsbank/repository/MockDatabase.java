@@ -18,7 +18,7 @@ public class MockDatabase {
 		Account account2 = new Account("X0002", "Pass", 100.0f);
 		TransactionUtility.accountCreation(account2);
 		
-		Customer customer1 = new Customer("Dance", "Party Town", "123-456-7890", account1);
+		Customer customer1 = new Customer("Paladin Danse", "Party Town", "123-456-7890", account1);
 		insertCustomer(customer1);
 		Customer customer2 = new Customer("Guy Fieri", "Flavor Town", "098-765-4321", account2);
 		insertCustomer(customer2);
