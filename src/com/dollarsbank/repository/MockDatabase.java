@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.dollarsbank.model.Account;
 import com.dollarsbank.model.Customer;
+import com.dollarsbank.utility.InputCheckUtility;
 import com.dollarsbank.utility.TransactionUtility;
 
 public class MockDatabase {
@@ -30,5 +31,13 @@ public class MockDatabase {
 	
 	public static void insertCustomer(String name, String address, String contactNum, Account account) {
 		mockDB.add(new Customer(name, address, contactNum, account));
+	}
+	
+	public static boolean checkInit() {
+		if(InputCheckUtility.isExistingUser("X0001")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

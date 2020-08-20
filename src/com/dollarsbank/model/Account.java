@@ -90,7 +90,7 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Account [userId=" + userId + ", password=" + password + ", savings" + savings + "]";
+		return "Account [userId=" + userId + ", password=" + password + ", savings=" + savings + "]";
 	}
 	
 }

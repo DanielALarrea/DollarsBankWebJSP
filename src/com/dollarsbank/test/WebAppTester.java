@@ -16,11 +16,6 @@ class WebAppTester {
 	Account testAccount = new Account("TestID", "TestPass", 100.0f);
 	
 	Customer testCustomer = new Customer("TestName", "TestAddress", "TestNum", testAccount);
-
-//	@Test
-//	void test() {
-//		fail("Not yet implemented");
-//	}
 	
 	@Test
 	void depositTestSuccess() {
@@ -114,10 +109,73 @@ class WebAppTester {
 	}
 	
 	@Test
+	void phoneConvertionTestSuccess() {
+		String phone1 = "1234567890";
+		String phone2 = "123-456-7890";
+		String phone3 = "(123) 456-7890";
+		
+		assertEquals("123-456-7890", InputCheckUtility.convertPhoneForm(phone1));
+		assertEquals("123-456-7890", InputCheckUtility.convertPhoneForm(phone2));
+		assertEquals("123-456-7890", InputCheckUtility.convertPhoneForm(phone3));
+	}
+	
+	@Test
+	void phoneConvertionTestFail() {
+		String phone1 = "123456789";
+		String phone2 = "123-456-780";
+		String phone3 = "(123) 456-790";
+		
+		assertEquals("123-456-7890", InputCheckUtility.convertPhoneForm(phone1), "Phone 1 failed");
+		assertEquals("123-456-7890", InputCheckUtility.convertPhoneForm(phone2), "Phone 1 failed");
+		assertEquals("123-456-7890", InputCheckUtility.convertPhoneForm(phone3), "Phone 1 failed");
+	}
+	
+	@Test
+	void customerFromAccountTest() {
+		MockDatabase.initDatabase();
+		Account testAccount = InputCheckUtility.accountLookUp("X0001");
+		Customer testCustomer = InputCheckUtility.customerLookUp(testAccount);
+		System.out.println(testCustomer);
+	}
+	
+	@Test
 	void accountCreateTestSuccess() {
 		MockDatabase.initDatabase();
 		String phoneNum = "1234567890";
 		WebAppController.createAccount("Name", "Address", phoneNum, "X0003", "P@ssword", 100.0f);
 		assertEquals("123-456-7890", InputCheckUtility.convertPhoneForm(phoneNum));
 	}
+	
+	@Test
+	void accountCreateTestFailBadPhoneNum() {
+		MockDatabase.initDatabase();
+		String phoneNum = "123456789";
+		WebAppController.createAccount("Name", "Address", phoneNum, "X0004", "P@ssword", 100.0f);
+		fail("Bad phone number");
+	}
+	
+	@Test
+	void accountCreateTestFailExistingUser() {
+		MockDatabase.initDatabase();
+		String phoneNum = "1234567890";
+		WebAppController.createAccount("Name", "Address", phoneNum, "X0001", "P@ssword", 100.0f);
+		fail("User Exists");
+	}
+	
+	@Test
+	void accountCreateTestFailBadPassword() {
+		MockDatabase.initDatabase();
+		String phoneNum = "1234567890";
+		WebAppController.createAccount("Name", "Address", phoneNum, "X0005", "Password", 100.0f);
+		fail("Bad password");
+	}
+	
+	@Test
+	void accountCreateTestFailNegativeNumber() {
+		MockDatabase.initDatabase();
+		String phoneNum = "1234567890";
+		WebAppController.createAccount("Name", "Address", phoneNum, "X0006", "P@ssword", -100.0f);
+		fail("Negative Number");
+	}
+
 }

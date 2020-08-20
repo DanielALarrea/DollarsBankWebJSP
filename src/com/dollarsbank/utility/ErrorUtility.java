@@ -18,6 +18,10 @@ public class ErrorUtility {
 		return "Account creation failed: ";
 	}
 	
+	public static String errorLogin() {
+		return "Log In failed: No account found matching user and password";
+	}
+	
 	public static String errorNotPositive() {
 		return "Expected positive number input";
 	}
@@ -39,7 +43,7 @@ public class ErrorUtility {
 	}
 	
 	public static String errorNotPhone() {
-		return "";
+		return "Phone number is not a valid form";
 	}
 	
 }

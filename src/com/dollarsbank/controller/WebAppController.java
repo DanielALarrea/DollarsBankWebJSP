@@ -1,6 +1,7 @@
 package com.dollarsbank.controller;
 
 import com.dollarsbank.model.Account;
+import com.dollarsbank.model.Customer;
 import com.dollarsbank.repository.MockDatabase;
 import com.dollarsbank.utility.ErrorUtility;
 import com.dollarsbank.utility.InputCheckUtility;
@@ -115,5 +116,14 @@ public class WebAppController {
 	
 	public static void displayTransactions(Account account, int x) {
 		System.out.println(account.xMostRecentTransaction(x));
+	}
+	
+	public static void displayCustomerInformation(Account account) {
+		Customer standIn = InputCheckUtility.customerLookUp(account);
+		System.out.println(standIn.getName());
+		System.out.println(standIn.getAddress());
+		System.out.println(standIn.getContactNum());
+		System.out.println(standIn.getBankAccount().getUserId());
+		System.out.println(standIn.getBankAccount().getSavings());
 	}
 }

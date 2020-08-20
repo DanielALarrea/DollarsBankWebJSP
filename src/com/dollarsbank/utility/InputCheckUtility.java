@@ -110,4 +110,33 @@ public class InputCheckUtility {
 		
 		return foundAccount;
 	}
+	
+	public static Customer customerLookUp(Account account) {
+		Customer foundCustomer = new Customer();
+		for (Customer customer : MockDatabase.mockDB) {
+			if (customer.getBankAccount() == account) {
+				foundCustomer = customer;
+			}
+		}
+		
+		return foundCustomer;
+	}
+	
+	public static Customer customerLookUpFromUser(String userID) {
+		Customer foundCustomer = customerLookUp(accountLookUp(userID));
+		
+		return foundCustomer;
+	}
+	
+	
+	public static boolean validLogin(String user, String password) {
+		boolean validLogin = false;
+		for (Customer customer : MockDatabase.mockDB) {
+			if (customer.getBankAccount().getUserId().equals(user) && customer.getBankAccount().getPassword().equals(password)) {
+				validLogin = true;
+			}
+		}
+		
+		return validLogin;
+	}
 }
