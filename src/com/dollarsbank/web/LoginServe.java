@@ -45,8 +45,6 @@ public class LoginServe extends HttpServlet {
 		
 		String userid = request.getParameter("userid");
 		String password = request.getParameter("password");
-		String errorMessage = ErrorUtility.errorLogin();
-		System.out.println(errorMessage);
 		Account account = InputCheckUtility.accountLookUp(userid);
 		
 		String destination = "";
@@ -56,8 +54,7 @@ public class LoginServe extends HttpServlet {
 			
 		} else {
 			destination = "index.jsp";
-			request.setAttribute("error", errorMessage);
-			System.out.println(request.getAttribute("error"));
+			request.setAttribute("error", ErrorUtility.errorLogin());
 		}
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(destination);

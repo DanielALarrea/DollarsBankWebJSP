@@ -10,18 +10,21 @@ import com.dollarsbank.utility.TransactionUtility;
 public class WebAppController {
 
 	public static void depositToAccount(float deposit, Account account) {
-		boolean noErrorNumber = false;
+//		boolean noErrorNumber = false;
+//		
+//		if(InputCheckUtility.isPositiveNumber(deposit)) {
+//			noErrorNumber = true;
+//		} else {
+//			System.out.println(ErrorUtility.errorDepositPrefix() + ErrorUtility.errorNotPositive());
+//		}
+//		
+//		if(noErrorNumber) {
+//			account.deposit(deposit);
+//			TransactionUtility.depositTransaction(deposit, account);
+//		}
 		
-		if(InputCheckUtility.isPositiveNumber(deposit)) {
-			noErrorNumber = true;
-		} else {
-			System.out.println(ErrorUtility.errorDepositPrefix() + ErrorUtility.errorNotPositive());
-		}
-		
-		if(noErrorNumber) {
-			account.deposit(deposit);
-			TransactionUtility.depositTransaction(deposit, account);
-		}
+		account.deposit(deposit);
+		TransactionUtility.depositTransaction(deposit, account);
 	}
 
 	public static void withdrawFromAccount(float withdraw, Account account) {

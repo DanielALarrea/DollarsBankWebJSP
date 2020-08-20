@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dollarsbank.controller.WebAppController;
 import com.dollarsbank.model.Account;
 import com.dollarsbank.utility.ErrorUtility;
 import com.dollarsbank.utility.InputCheckUtility;
@@ -49,26 +50,22 @@ public class DepositServe extends HttpServlet {
 		
 		String errorMessage = ErrorUtility.errorDepositPrefix();
 		
+		String destination = "";
+		
 		Account account = InputCheckUtility.accountLookUp(userid);
 		
-		if(InputCheckUtility.isFloat(depositString)) {
+		if(InputCheckUtility.isFloat(depositString) && InputCheckUtility.isPositiveNumber(Float.parseFloat(depositString))) {
 			deposit = Float.parseFloat(depositString);
-			if(InputCheckUtility.isPositiveNumber(deposit)) {
-				
-			} else {
-				errorMessage += ErrorUtility.errorNotPositive();
-			}
+			destination = "home.jsp";
+			WebAppController.depositToAccount(deposit, account);
 		} else {
 			errorMessage += ErrorUtility.errorNotPositive();
+			destination = "deposit.jsp";
+			request.setAttribute("error", errorMessage);
 		}
 		
-		if(true) {
-			String destination = "home.jsp";
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher(destination);
-			requestDispatcher.forward(request, response);
-		} else {
-			response.sendRedirect("deposit.jsp");
-		}
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(destination);
+		requestDispatcher.forward(request, response);
 	}
 
 }
