@@ -73,7 +73,9 @@
 				<input class="form-control" id="inputPass" type="password" name="password" placeholder="Password" required>
 			</div>
 			<div class="col-sm-7 text-danger"><%=errorPass %></div>
+			<span id="helpBlock" class="help-block col-sm-12">Password must be 8 characters long and contain at least one of each: Uppercase, Lowercase, Special</span>
 		</div>
+		
 		
 		<div class="form-group form-inline">
 			<label for="inputInitDepo" class="col-sm-2 control-label">Initial Deposit</label>

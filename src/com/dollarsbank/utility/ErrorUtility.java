@@ -19,7 +19,7 @@ public class ErrorUtility {
 	}
 	
 	public static String errorLogin() {
-		return "Log In failed: No account found matching user and password";
+		return "No account found matching user and password";
 	}
 	
 	public static String errorNotPositive() {
