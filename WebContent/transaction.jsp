@@ -1,12 +1,13 @@
-<%@page import="com.dollarsbank.utility.InputCheckUtility"%>
+<%@page import="java.util.List"%>
 <%@page import="com.dollarsbank.model.Account"%>
+<%@page import="com.dollarsbank.utility.InputCheckUtility"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>DollarsBank Deposit</title>
+<title>DollarsBank Transactions</title>
 <%@include file="bootstrap.html"%>
 </head>
 <body>
@@ -14,26 +15,27 @@
 	<%
 		String userid = request.getParameter("userid");
 		Account account = InputCheckUtility.accountLookUp(userid);
-
-		float balance = account.getSavings();
+		List<String> transactions = account.xMostRecentTransaction(5);
 
 		String error = "";
 		if ((String) request.getAttribute("error") != null) {
 			error = (String) request.getAttribute("error");
 		}
 	%>
-	<h2><%=error%></h2>
+<div class="text-center">
+<h3>5 Most Recent Transactions</h3>
+<div class="d-flex justify-content-center">
 	
-<div class="text-center border">
-	<form action="${pageContext.request.contextPath}/DepositServe"
-		method="post">
-		<h1 class="h3 mb-3">Balance: $<%=balance%></h1>
-		<div class="form-group">
-			<input type="number" name="deposit" placeholder="10.00">
-			<input type="hidden" name="userid" value="<%=userid%>">
-		</div>
-		<button class="btn btn-lg btn-primary" style="width: 20%">Deposit</button>
-	</form>
+	<table class="mb-3">
+		<%
+			for(String transaction: transactions) {
+			%>
+				<tr class="border"><td> <%=transaction %></td></tr>
+			<% 
+			}
+		%>
+	</table>
+	</div>
 </div>
 	<form class="d-flex justify-content-center" action="home.jsp" method="post">
 		<input type="hidden" name="userid" value="<%=userid%>">

@@ -22,19 +22,29 @@
 	%>
 	<h2><%=error%></h2>
 
-<div class="text-center border">
-	<form class="form-signin" action="${pageContext.request.contextPath}/LoginServe" method="post">
-		<h1 class="h3 mb-3">Customer Login</h1>
-		<div class="form-group">
-			<label for="inputUser" class="sr-only">User ID</label>
-			<input type="text" style="width: 20%; height: 30px" name="userid" placeholder="User ID" required>
-			<br>
-			<label for="inputPass" class="sr-only">Password</label>
-			<input type="text" style="width: 20%; height: 30px" name="password" placeholder="Password" required>
+<div class="border">
+	<form class="form-horizontal" action="${pageContext.request.contextPath}/LoginServe" method="post">
+		<h1 class="h3 mb-3 text-center">Customer Login</h1>
+		<div class="form-group form-inline">
+			<label for="inputUser" class="col-sm-2 control-label">User ID</label>
+			<div class="col-sm-10">
+				<input class="form-control col-sm-10" id="inputUser" type="text" name="userid" placeholder="User ID" required>
+			</div>
 		</div>
-		<button class="btn btn-lg btn-primary" style="width: 20%">Sign In</button>
+		<div class="form-group form-inline">
+			<label for="inputPass" class="col-sm-2 control-label">Password</label>
+			<div class="col-sm-10">
+				<input class="form-control" id="inputPass" type="text" name="password" placeholder="Password" required>
+			</div>
+		</div>
+		<div class="form-group form-inline">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button class="btn btn-lg btn-primary">Sign In</button>
+				<a class="btn btn-lg btn-primary" href="register.jsp">Register</a>
+			</div>	
+		</div>
 	</form>
-	<a class="btn btn-lg btn-primary" style="width: 20%" href="register.jsp">Register</a>
+	
 </div>
 
 	<%@include file="footer.html"%>

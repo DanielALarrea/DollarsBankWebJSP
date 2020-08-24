@@ -28,92 +28,108 @@ public class WebAppController {
 	}
 
 	public static void withdrawFromAccount(float withdraw, Account account) {
-		boolean noErrorNumber = false;
+//		boolean noErrorNumber = false;
+//		
+//		if(InputCheckUtility.isPositiveNumber(withdraw)) {
+//			if(InputCheckUtility.isValidWithdraw(withdraw, account)) {
+//				noErrorNumber = true;
+//			} else {
+//				System.out.println(ErrorUtility.errorWithdrawPrefix() + ErrorUtility.errorNotEnough());
+//			}
+//		} else {
+//			System.out.println(ErrorUtility.errorWithdrawPrefix() + ErrorUtility.errorNotPositive());
+//		}
+//		
+//		if(noErrorNumber) {
+//			account.withdraw(withdraw);
+//			TransactionUtility.withdrawTransaction(withdraw, account);
+//		}
 		
-		if(InputCheckUtility.isPositiveNumber(withdraw)) {
-			if(InputCheckUtility.isValidWithdraw(withdraw, account)) {
-				noErrorNumber = true;
-			} else {
-				System.out.println(ErrorUtility.errorWithdrawPrefix() + ErrorUtility.errorNotEnough());
-			}
-		} else {
-			System.out.println(ErrorUtility.errorWithdrawPrefix() + ErrorUtility.errorNotPositive());
-		}
-		
-		if(noErrorNumber) {
-			account.withdraw(withdraw);
-			TransactionUtility.withdrawTransaction(withdraw, account);
-		}
+		account.withdraw(withdraw);
+		TransactionUtility.withdrawTransaction(withdraw, account);
 	}
 
 	public static void transferFunds(Account accountFrom, String userTo, float transfer) {
-		Account accountTo = new Account();
-		boolean noErrorExistingUser = false;
-		boolean noErrorNumber = false;
+//		Account accountTo = new Account();
+//		boolean noErrorExistingUser = false;
+//		boolean noErrorNumber = false;
+//		
+//		if(InputCheckUtility.isExistingUser(userTo)) {
+//			accountTo = InputCheckUtility.accountLookUp(userTo);
+//			noErrorExistingUser = true;
+//		} else {
+//			System.out.println(ErrorUtility.errorTransferPrefix() + ErrorUtility.errorUserNotFound());
+//		}
+//		
+//		if(InputCheckUtility.isPositiveNumber(transfer)) {
+//			if(InputCheckUtility.isValidWithdraw(transfer, accountFrom)) {
+//				noErrorNumber = true;
+//			} else {
+//				System.out.println(ErrorUtility.errorTransferPrefix() + ErrorUtility.errorNotEnough());
+//			}
+//		} else {
+//			System.out.println(ErrorUtility.errorTransferPrefix() + ErrorUtility.errorNotPositive());
+//		}
+//		
+//		if(noErrorExistingUser && noErrorNumber) {
+//			accountFrom.withdraw(transfer);
+//			TransactionUtility.givingFundTransfer(accountFrom, userTo, transfer);
+//			accountTo.deposit(transfer);
+//			TransactionUtility.receivingFundTransfer(accountTo, accountFrom.getUserId(), transfer);
+//		}
 		
-		if(InputCheckUtility.isExistingUser(userTo)) {
-			accountTo = InputCheckUtility.accountLookUp(userTo);
-			noErrorExistingUser = true;
-		} else {
-			System.out.println(ErrorUtility.errorTransferPrefix() + ErrorUtility.errorUserNotFound());
-		}
+		Account accountTo = InputCheckUtility.accountLookUp(userTo);
 		
-		if(InputCheckUtility.isPositiveNumber(transfer)) {
-			if(InputCheckUtility.isValidWithdraw(transfer, accountFrom)) {
-				noErrorNumber = true;
-			} else {
-				System.out.println(ErrorUtility.errorTransferPrefix() + ErrorUtility.errorNotEnough());
-			}
-		} else {
-			System.out.println(ErrorUtility.errorTransferPrefix() + ErrorUtility.errorNotPositive());
-		}
-		
-		if(noErrorExistingUser && noErrorNumber) {
-			accountFrom.withdraw(transfer);
-			TransactionUtility.givingFundTransfer(accountFrom, userTo, transfer);
-			accountTo.deposit(transfer);
-			TransactionUtility.receivingFundTransfer(accountTo, accountFrom.getUserId(), transfer);
-		}
+		accountFrom.withdraw(transfer);
+		TransactionUtility.givingFundTransfer(accountFrom, userTo, transfer);
+		accountTo.deposit(transfer);
+		TransactionUtility.receivingFundTransfer(accountTo, accountFrom.getUserId(), transfer);
 		
 	}
 	
 	public static void createAccount(String name, String address, String contactNum, String userID, String password, float savings) {
-		String convertedNum = "";
-		boolean noErrorPhone = false;
-		boolean noErrorUser = false;
-		boolean noErrorPassword = false;
-		boolean noErrorNumber = false;
+//		String convertedNum = "";
+//		boolean noErrorPhone = false;
+//		boolean noErrorUser = false;
+//		boolean noErrorPassword = false;
+//		boolean noErrorNumber = false;
+//		
+//		if(InputCheckUtility.isValidPhoneNum(contactNum)) {
+//			noErrorPhone = true;
+//			convertedNum = InputCheckUtility.convertPhoneForm(contactNum);
+//		} else {
+//			System.out.println(ErrorUtility.errorAccountCreationPrefix() + ErrorUtility.errorNotPhone());
+//		}
+//		
+//		if(!InputCheckUtility.isExistingUser(userID)) {
+//			noErrorUser = true;
+//		} else {
+//			System.out.println(ErrorUtility.errorAccountCreationPrefix() + ErrorUtility.errorExistingUser());
+//		}
+//		
+//		if(InputCheckUtility.matchesPasswordCriteria(password)) {
+//			noErrorPassword = true;
+//		} else {
+//			System.out.println(ErrorUtility.errorAccountCreationPrefix() + ErrorUtility.errorNotPasswordCriteria());
+//		}
+//		
+//		if(InputCheckUtility.isPositiveNumber(savings)) {
+//			noErrorNumber = true;
+//		} else {
+//			System.out.println(ErrorUtility.errorAccountCreationPrefix() + ErrorUtility.errorNotPositive());
+//		}
+//		
+//		if(noErrorPhone && noErrorUser && noErrorPassword && noErrorNumber) {
+//			Account createdAccount = new Account(userID, password, savings);
+//			TransactionUtility.accountCreation(createdAccount);
+//			MockDatabase.insertCustomer(name, address, convertedNum, createdAccount);
+//		}
 		
-		if(InputCheckUtility.isValidPhoneNum(contactNum)) {
-			noErrorPhone = true;
-			convertedNum = InputCheckUtility.convertPhoneForm(contactNum);
-		} else {
-			System.out.println(ErrorUtility.errorAccountCreationPrefix() + ErrorUtility.errorNotPhone());
-		}
+		String convertedNum = InputCheckUtility.convertPhoneForm(contactNum);
 		
-		if(!InputCheckUtility.isExistingUser(userID)) {
-			noErrorUser = true;
-		} else {
-			System.out.println(ErrorUtility.errorAccountCreationPrefix() + ErrorUtility.errorExistingUser());
-		}
-		
-		if(InputCheckUtility.matchesPasswordCriteria(password)) {
-			noErrorPassword = true;
-		} else {
-			System.out.println(ErrorUtility.errorAccountCreationPrefix() + ErrorUtility.errorNotPasswordCriteria());
-		}
-		
-		if(InputCheckUtility.isPositiveNumber(savings)) {
-			noErrorNumber = true;
-		} else {
-			System.out.println(ErrorUtility.errorAccountCreationPrefix() + ErrorUtility.errorNotPositive());
-		}
-		
-		if(noErrorPhone && noErrorUser && noErrorPassword && noErrorNumber) {
-			Account createdAccount = new Account(userID, password, savings);
-			TransactionUtility.accountCreation(createdAccount);
-			MockDatabase.insertCustomer(name, address, convertedNum, createdAccount);
-		}
+		Account createdAccount = new Account(userID, password, savings);
+		TransactionUtility.accountCreation(createdAccount);
+		MockDatabase.insertCustomer(name, address, convertedNum, createdAccount);
 		
 	}
 	

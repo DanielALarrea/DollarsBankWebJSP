@@ -14,39 +14,55 @@
 	<%
 		String userid = request.getParameter("userid");
 		Account account = InputCheckUtility.accountLookUp(userid);
+		
+		float balance = account.getSavings();
 	%>
 
-	<h1>Hello, <%=userid%></h1>
-
-	<form action="deposit.jsp" method="post">
-		<input type="hidden" name="userid" value="<%=userid%>"> 
-		<input type="submit" value="Deposit">
-	</form>
-
-	<form action="deposit.jsp" method="post">
-		<input type="hidden" name="userid" value="<%=userid%>"> 
-		<input type="submit" value="Withdraw">
-	</form>
-
-	<form action="deposit.jsp" method="post">
-		<input type="hidden" name="userid" value="<%=userid%>"> 
-		<input type="submit" value="Transfer">
-	</form>
-
-	<form action="deposit.jsp" method="post">
-		<input type="hidden" name="userid" value="<%=userid%>"> 
-		<input type="submit" value="5 Recent Transactions">
-	</form>
-
-	<form action="deposit.jsp" method="post">
-		<input type="hidden" name="userid" value="<%=userid%>"> 
-		<input type="submit" value="Display Customer Information">
-	</form>
-
-	<form action="index.jsp" method="get">
-		<input type="submit" value="Sign Out">
-	</form>
-
+	<h1 class="text-center">Hello, <%=userid%></h1>
+	
+<div class="text-center border">
+		<div class="border">
+		<h3>Balance: $<%=balance %></h3>
+			<ul class="list-inline">
+				<li class="list-inline-item">
+					<form action="deposit.jsp" method="post">
+						<input type="hidden" name="userid" value="<%=userid%>">
+						<button class="btn btn-lg btn-primary">Deposit</button>
+					</form>
+				</li>
+				<li class="list-inline-item">
+					<form action="withdraw.jsp" method="post">
+						<input type="hidden" name="userid" value="<%=userid%>">
+						<button class="btn btn-lg btn-primary">Withdraw</button>
+					</form>
+				</li>
+				<li class="list-inline-item">
+					<form action="transfer.jsp" method="post">
+						<input type="hidden" name="userid" value="<%=userid%>">
+						<button class="btn btn-lg btn-primary">Transfer</button>
+					</form>
+				</li>
+			</ul>
+		</div>
+		<div class="border">
+		<h3>Account Information</h3>
+			<ul class="list-inline">
+				<li class="list-inline-item">
+					<form action="transaction.jsp" method="post">
+						<input type="hidden" name="userid" value="<%=userid%>">
+						<button class="btn btn-lg btn-primary">Recent Transactions</button>
+					</form>
+				</li>
+				<li class="list-inline-item">
+					<form action="information.jsp" method="post">
+						<input type="hidden" name="userid" value="<%=userid%>">
+						<button class="btn btn-lg btn-primary">Customer Information</button>
+					</form>
+				</li>
+			</ul>
+		</div>
+		<a class="btn btn-lg btn-primary" style="width: 20%" href="index.jsp">Sign Out</a>
+</div>
 	<%@include file="footer.html"%>
 </body>
 </html>

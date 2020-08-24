@@ -9,21 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dollarsbank.controller.WebAppController;
 import com.dollarsbank.model.Account;
 import com.dollarsbank.utility.ErrorUtility;
 import com.dollarsbank.utility.InputCheckUtility;
 
 /**
- * Servlet implementation class LoginServe
+ * Servlet implementation class WithdrawServe
  */
-@WebServlet("/LoginServe")
-public class LoginServe extends HttpServlet {
+@WebServlet("/WithdrawServe")
+public class WithdrawServe extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServe() {
+    public WithdrawServe() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +34,7 @@ public class LoginServe extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -41,19 +42,32 @@ public class LoginServe extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
+//		doGet(request, response);
 		
 		String userid = request.getParameter("userid");
-		String password = request.getParameter("password");
+		String withdrawString = request.getParameter("withdraw");
+		float withdraw = 0.0f;
+		
+		String errorMessage = ErrorUtility.errorWithdrawPrefix();
 		
 		String destination = "";
 		
-		if(InputCheckUtility.validLogin(userid, password)) {
-			destination = "home.jsp";
-			
+		Account account = InputCheckUtility.accountLookUp(userid);
+		
+		if(InputCheckUtility.isFloat(withdrawString) && InputCheckUtility.isPositiveNumber(Float.parseFloat(withdrawString))) {
+			withdraw = Float.parseFloat(withdrawString);
+			if(InputCheckUtility.isValidWithdraw(withdraw, account)) {
+				destination = "home.jsp";
+				WebAppController.withdrawFromAccount(withdraw, account);
+			} else {
+				errorMessage += ErrorUtility.errorNotEnough();
+				destination = "withdraw.jsp";
+				request.setAttribute("error", errorMessage);
+			}
 		} else {
-			destination = "index.jsp";
-			request.setAttribute("error", ErrorUtility.errorLogin());
+			errorMessage += ErrorUtility.errorNotPositive();
+			destination = "withdraw.jsp";
+			request.setAttribute("error", errorMessage);
 		}
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(destination);
