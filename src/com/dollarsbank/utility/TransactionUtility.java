@@ -19,7 +19,7 @@ public class TransactionUtility {
 	public static void accountCreation(Account account) {
 		String transaction = "Created account for user "
 				+ "[" + account.getUserId() + "] with initial deposit of "
-				+ "$" + account.getSavings() + " at " + LocalDateTime.now();
+				+ "$" + account.getSavings();
 		account.pushRecentTransaction(transaction);
 	}
 	

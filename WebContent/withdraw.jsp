@@ -22,14 +22,14 @@
 			error = (String) request.getAttribute("error");
 		}
 	%>
-	<h2><%=error%></h2>
 	
 <div class="text-center border">
 	<form action="${pageContext.request.contextPath}/WithdrawServe"
 		method="post">
 		<h1 class="h3 mb-3">Balance: $<%=balance%></h1>
+		<div class="text-danger"><%=error%></div>
 		<div class="form-group">
-			<input type="number" name="withdraw" placeholder="10.00">
+			<input type="number" name="withdraw" placeholder="10.00" required>
 			<input type="hidden" name="userid" value="<%=userid%>">
 		</div>
 		<button class="btn btn-lg btn-primary" style="width: 20%">Withdraw</button>

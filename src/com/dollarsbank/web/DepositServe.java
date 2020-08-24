@@ -48,7 +48,7 @@ public class DepositServe extends HttpServlet {
 		String depositString = request.getParameter("deposit");
 		float deposit = 0.0f;
 		
-		String errorMessage = ErrorUtility.errorDepositPrefix();
+		String errorMessage = "";
 		
 		String destination = "";
 		

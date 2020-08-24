@@ -48,7 +48,7 @@ public class WithdrawServe extends HttpServlet {
 		String withdrawString = request.getParameter("withdraw");
 		float withdraw = 0.0f;
 		
-		String errorMessage = ErrorUtility.errorWithdrawPrefix();
+		String errorMessage = "";
 		
 		String destination = "";
 		

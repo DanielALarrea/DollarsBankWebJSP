@@ -52,7 +52,7 @@ public class TransferServe extends HttpServlet {
 		boolean noErrorNumber = false;
 		boolean noErrorUser = false;
 		
-		String errorMessage = ErrorUtility.errorTransferPrefix();
+		String errorMessage = "";
 		String errorNumberMessage = "";
 		
 		String destination = "";
