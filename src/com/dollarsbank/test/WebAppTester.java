@@ -15,7 +15,7 @@ class WebAppTester {
 	
 	Account testAccount = new Account("TestID", "TestPass", 100.0f);
 	
-	Customer testCustomer = new Customer("TestName", "TestAddress", "TestNum", testAccount);
+	Customer testCustomer = new Customer("TestName", "TestAddress", "123-456-7890", testAccount);
 	
 	@Test
 	void depositTestSuccess() {
@@ -178,4 +178,46 @@ class WebAppTester {
 		fail("Negative Number");
 	}
 
+	@Test
+	void customerDetailChangeSuccess() {
+		MockDatabase.initDatabase();
+		MockDatabase.insertCustomer(testCustomer);
+		String updatedName = "New Name";
+		String updatedAddress = "New Address";
+		String updatedPhone = "456-123-7890";
+		
+		WebAppController.changeCustomerDetails(testAccount.getUserId(), updatedName, updatedAddress, updatedPhone);
+		
+		assertEquals("New Name", testCustomer.getName());
+		assertEquals("New Address", testCustomer.getAddress());
+		assertEquals("456-123-7890", testCustomer.getContactNum());
+		
+		System.out.println(testCustomer);
+	}
+	
+	@Test
+	void customerDetailChangeOnlyName() {
+		MockDatabase.initDatabase();
+		MockDatabase.insertCustomer(testCustomer);
+		String updatedName = "New Name";
+		
+		WebAppController.changeCustomerDetails(testAccount.getUserId(), updatedName, testCustomer.getAddress(), testCustomer.getContactNum());
+		
+		assertEquals("New Name", testCustomer.getName());
+		assertEquals("TestAddress", testCustomer.getAddress());
+		assertEquals("TestNum", testCustomer.getContactNum());
+		
+		System.out.println(testCustomer);
+	}
+	
+	@Test
+	void customerDetailChangePhoneFail() {
+		MockDatabase.initDatabase();
+		MockDatabase.insertCustomer(testCustomer);
+		String invalidPhone = "123 12341244";
+		
+		WebAppController.changeCustomerDetails(testAccount.getUserId(), testCustomer.getName(), testCustomer.getAddress(), invalidPhone);
+		
+		fail("Invalid phone form");
+	}
 }

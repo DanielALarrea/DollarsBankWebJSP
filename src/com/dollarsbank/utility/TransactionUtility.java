@@ -1,7 +1,5 @@
 package com.dollarsbank.utility;
 
-import java.time.LocalDateTime;
-
 import com.dollarsbank.model.Account;
 
 public class TransactionUtility {
@@ -31,6 +29,23 @@ public class TransactionUtility {
 	public static void receivingFundTransfer(Account accountTo, String userFrom, float transfer) {
 		String transaction = "Received $" + transfer + " from user [" + userFrom + "]";
 		accountTo.pushRecentTransaction(transaction);
+	}
+	
+	public static void updatedCustomerDetails(Account account, String combinedTransactions) {
+		String transaction = "Updated following account details:" + combinedTransactions;
+		account.pushRecentTransaction(transaction);
+	}
+	
+	public static String updatedCustomerName(String name) {
+		return "-Updated name to " + name;
+	}
+	
+	public static String updatedCustomerAddress(String address) {
+		return "-Updated address to " + address;
+	}
+
+	public static String updatedCustomerPhone(String contactNum) {
+		return "-Updated contact number to " + contactNum;
 	}
 
 }
