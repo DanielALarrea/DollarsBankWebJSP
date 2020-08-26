@@ -20,17 +20,21 @@
 	<div class="text-center">
 		<h3>Customer Information</h3>
 		<div class="d-flex justify-content-center">
-			<table>
-				<tr class="border"><td class="border">User ID</td><td><%=account.getUserId() %></td></tr>
-				<tr class="border"><td class="border">Balance</td><td>$<%=account.getSavings() %></td></tr>
-			</table>
+			<div class="col-sm-3">
+				<table class="table table-sm">
+					<tr class="border"><td class="border">User ID</td><td><%=account.getUserId() %></td></tr>
+					<tr class="border"><td class="border">Balance</td><td>$<%=account.getSavings() %></td></tr>
+				</table>
 			</div>
+		</div>
 		<div class="d-flex justify-content-center">
-			<table>
-				<tr class="border"><td class="border">Name</td><td><%=customer.getName() %></td></tr>
-				<tr class="border"><td class="border">Address</td><td><%=customer.getAddress() %></td></tr>
-				<tr class="border"><td class="border">Contact Number</td><td><%=customer.getContactNum() %></td></tr>
-			</table>
+			<div class="col-sm-3">
+				<table class="table table-sm">
+					<tr class="border"><td class="border">Name</td><td><%=customer.getName() %></td></tr>
+					<tr class="border"><td class="border">Address</td><td><%=customer.getAddress() %></td></tr>
+					<tr class="border"><td class="border">Contact Number</td><td><%=customer.getContactNum() %></td></tr>
+				</table>
+			</div>
 		</div>
 	</div>
 

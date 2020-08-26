@@ -37,21 +37,21 @@
 	<form action="${pageContext.request.contextPath}/RegisterServe" method="post">
 		<h1 class="h3 mb-3 text-center">Register With DollarsBank!</h1>
 		
-		<div class="form-group form-inline">
+		<div class="form-group">
 			<label for="inputName" class="col-sm-2 control-label">Name</label>
 			<div class="col-sm-10">
 				<input class="form-control" id="inputName" type="text" name="name" placeholder="Name" required>
 			</div>
 		</div>
 		
-		<div class="form-group form-inline">
+		<div class="form-group">
 			<label for="inputAddress" class="col-sm-2 control-label">Address</label>
 			<div class="col-sm-10">
 				<input class="form-control" id="inputAddress" type="text" name="address" placeholder="Address" required>
 			</div>
 		</div>
 		
-		<div class="form-group form-inline">
+		<div class="form-group">
 			<label for="inputPhone" class="col-sm-2 control-label">Contact Number</label>
 			<div class="col-sm-3">
 				<input class="form-control" id="inputPhone" type="text" name="contactNum" placeholder="123-456-7890" required>
@@ -59,7 +59,7 @@
 			<div class="col-sm-7 text-danger"><%=errorPhone %></div>
 		</div>
 		
-		<div class="form-group form-inline">
+		<div class="form-group">
 			<label for="inputUser" class="col-sm-2 control-label">User ID</label>
 			<div class="col-sm-3">
 				<input class="form-control" id="inputUser" type="text" name="userID" placeholder="User ID" required>
@@ -67,7 +67,7 @@
 			<div class="col-sm-7 text-danger"><%=errorUser %></div>
 		</div>
 		
-		<div class="form-group form-inline">
+		<div class="form-group">
 			<label for="inputPass" class="col-sm-2 control-label">Password</label>
 			<div class="col-sm-3">
 				<input class="form-control" id="inputPass" type="password" name="password" placeholder="Password" required>
@@ -77,7 +77,7 @@
 		</div>
 		
 		
-		<div class="form-group form-inline">
+		<div class="form-group">
 			<label for="inputInitDepo" class="col-sm-2 control-label">Initial Deposit</label>
 			<div class="col-sm-3">
 				<input class="form-control" id="inputInitDepo" type="number" name="intialDeposit" placeholder="10.00" required>
@@ -93,7 +93,8 @@
 		</div>
 	</form>
 </div>
-
+<br>
+<br>
 	
 
 	<%@include file="footer.html"%>

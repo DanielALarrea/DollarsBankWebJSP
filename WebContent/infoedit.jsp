@@ -26,31 +26,41 @@
 	<div class="text-center">
 		<h3>Customer Information</h3>
 		<div class="d-flex justify-content-center">
-			<table>
-				<tr class="border"><td class="border">User ID</td><td><%=account.getUserId() %></td></tr>
-				<tr class="border"><td class="border">Balance</td><td>$<%=account.getSavings() %></td></tr>
-			</table>
+			<div class="col-sm-3">
+				<table class="table table-sm">
+					<tr class="border"><td class="border">User ID</td><td><%=account.getUserId() %></td></tr>
+					<tr class="border"><td class="border">Balance</td><td>$<%=account.getSavings() %></td></tr>
+				</table>
 			</div>
-		<div class="d-flex justify-content-center">
-			<form action="${pageContext.request.contextPath}/InformationServe"
-				method="post">
-				<div class="form-group">
-					<input type="text" name="name" value="<%=customer.getName() %>">
-				</div>
-				<div class="form-group">
-					<input type="text" name="address" value="<%=customer.getAddress() %>"> 
-				</div>
-				<div class="form-group">
-					<input type="text" name="contactNum" value="<%=customer.getContactNum() %>">
-				</div>
-				<div><%=errorPhone %></div>
-				<input type="hidden" name="userid" value="<%=userid%>">
-				<button class="btn btn-lg btn-primary">Save</button>
-			</form>
 		</div>
+		<form action="${pageContext.request.contextPath}/InformationServe"
+			method="post">
+			<div class="d-flex justify-content-center">
+				<label class="col-sm-1">Name</label>
+				<div class="form-group">
+					<input class="form-control" type="text" name="name"
+						value="<%=customer.getName()%>" required>
+				</div>
+			</div>
+			<div class="d-flex justify-content-center">
+				<label class="col-sm-1">Address</label>
+				<div class="form-group">
+					<input class="form-control" type="text" name="address"
+						value="<%=customer.getAddress()%>" required>
+				</div>
+			</div>
+			<div class="d-flex justify-content-center">
+				<label class="col-sm-1">Contact Number</label>
+				<div class="form-group">
+					<input class="form-control" type="text" name="contactNum"
+						value="<%=customer.getContactNum()%>" required>
+				</div>
+			</div>
+			<div class="d-flex justify-content-center text-danger"><%=errorPhone%></div>
+			<input type="hidden" name="userid" value="<%=userid%>">
+			<button class="btn btn-lg btn-primary">Save</button>
+		</form>
 	</div>
-
-	
 
 	<form class="d-flex justify-content-center" action="home.jsp" method="post">
 		<input type="hidden" name="userid" value="<%=userid%>">

@@ -67,7 +67,8 @@ public class InputCheckUtility {
 		boolean validPhone = false;
 		String regexBasic = "^\\d{10}$";
 		String regexExtra = "^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$";
-		if (phoneNum.matches(regexBasic) || phoneNum.matches(regexExtra)) {
+		if ((phoneNum.matches(regexBasic) || phoneNum.matches(regexExtra)) && 
+			(phoneNum.length() == 10 || phoneNum.length() == 12 || phoneNum.length() == 14)) {
 			validPhone = true;
 		}
 

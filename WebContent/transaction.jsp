@@ -14,47 +14,52 @@
 	<%@include file="header.html"%>
 	<%
 		String userid = request.getParameter("userid");
-		Account account = InputCheckUtility.accountLookUp(userid);
-		int numberOfTransactions = 5;
-		if (request.getParameter("transactionCount") != null) {
-			numberOfTransactions = Integer.parseInt(request.getParameter("transactionCount"));
-		}
-		List<String> transactions = account.xMostRecentTransaction(numberOfTransactions);
+	Account account = InputCheckUtility.accountLookUp(userid);
+	int numberOfTransactions = 5;
+	if (request.getParameter("transactionCount") != null) {
+		numberOfTransactions = Integer.parseInt(request.getParameter("transactionCount"));
+	}
+	List<String> transactions = account.xMostRecentTransaction(numberOfTransactions);
 
-		String error = "";
-		if ((String) request.getAttribute("error") != null) {
-			error = (String) request.getAttribute("error");
-		}
+	String error = "";
+	if ((String) request.getAttribute("error") != null) {
+		error = (String) request.getAttribute("error");
+	}
 	%>
 	<div class="text-center">
 		<h3>Recent Transactions</h3>
 		<div class="d-flex justify-content-center">
 
-		<form action="transaction.jsp" method="post">
-			<select name="transactionCount">
-				<option value="5">5</option>
-				<option value="6">6</option>
-				<option value="7">7</option>
-				<option value="8">8</option>
-				<option value="9">9</option>
-				<option value="10">10</option>
-			</select>
-			<input type="hidden" name="userid" value="<%=userid%>">
-			<button class="btn btn-sm btn-primary">Display</button>
-		</form>
+			<form action="transaction.jsp" method="post">
+				<select name="transactionCount">
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+				</select> <input type="hidden" name="userid" value="<%=userid%>">
+				<button class="btn btn-sm btn-primary">Display</button>
+			</form>
 		</div>
-<div class="d-flex justify-content-center">
-			<table class="mb-3">
-				<%
-					for (String transaction : transactions) {
-				%>
+		<div class="d-flex justify-content-center">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<table class="table table-striped table-sm">
+				<tbody>
+					<%
+						for (String transaction : transactions) {
+					%>
 					<tr class="border">
 						<td><%=transaction%></td>
 					</tr>
-				<%
-					}
-				%>
-			</table>
+					<%
+						}
+					%>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-sm-4"></div>
 		</div>
 	</div>
 	<form class="d-flex justify-content-center" action="home.jsp"

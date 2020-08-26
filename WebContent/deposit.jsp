@@ -28,9 +28,11 @@
 		method="post">
 		<h1 class="h3 mb-3">Balance: $<%=balance%></h1>
 		<div class="text-danger"><%=error%></div>
-		<div class="form-group">
-			<input type="number" name="deposit" placeholder="10.00" required>
-			<input type="hidden" name="userid" value="<%=userid%>">
+		<div class="d-flex justify-content-center">
+			<div class="form-group col-sm-3">
+				<input class="form-control" type="number" name="deposit" placeholder="10.00" required>
+				<input type="hidden" name="userid" value="<%=userid%>">
+			</div>
 		</div>
 		<button class="btn btn-lg btn-primary" style="width: 20%">Deposit</button>
 	</form>

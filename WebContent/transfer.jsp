@@ -32,14 +32,22 @@
 	<form action="${pageContext.request.contextPath}/TransferServe"
 		method="post">
 		<h1 class="h3 mb-3">Balance: $<%=balance%></h1>
-		<div class="form-group">
-			<div class="text-danger"><%=errorUser%></div>
-			<input type="text" style="width: 20%; height: 30px" name="userTransfer" placeholder="User To Transfer To" required>
-			<br>
-			<div class="text-danger"><%=errorNumber%></div>
-			<input type="number" style="width: 20%; height: 30px" name="transfer" placeholder="10.00" required>
-			<input type="hidden" name="userid" value="<%=userid%>">
+		<div class="d-flex justify-content-center">
+			<label class="col-sm-1">Transfer</label>
+			<div class="form-group col-sm-3">
+				<input class="form-control" type="number" name="transfer" placeholder="10.00" required>
+				<div class="text-danger"><%=errorNumber%></div>
+			</div>
+			
 		</div>
+		<div class="d-flex justify-content-center">
+		<label class="col-sm-1">To</label>
+			<div class="form-group col-sm-3">
+				<input class="form-control" type="text" name="userTransfer" placeholder="User" required>
+				<div class="text-danger"><%=errorUser%></div>
+			</div>
+		</div>
+		<input type="hidden" name="userid" value="<%=userid%>">
 		<button class="btn btn-lg btn-primary" style="width: 20%">Transfer</button>
 	</form>
 </div>

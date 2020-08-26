@@ -31,24 +31,20 @@ public class WebAppController {
 	public static void changeCustomerDetails(String userid, String name, String address, String contactNum) {
 		Customer customer = InputCheckUtility.customerLookUpFromUser(userid);
 		String convertedNum = InputCheckUtility.convertPhoneForm(contactNum);
-		System.out.println(convertedNum);
 		String changedDetails = "";
 		
 		if(!(customer.getName().equals(name) && customer.getAddress().equals(address) && customer.getContactNum().equals(contactNum))) {
 			if(!customer.getName().equals(name)) {
-				System.out.println("Changed name");
 				customer.setName(name);
 				changedDetails += "<br>" + TransactionUtility.updatedCustomerName(name);
 			}
 
 			if(!customer.getAddress().equals(address)) {
-				System.out.println("Changed address");
 				customer.setAddress(address);
 				changedDetails += "<br>" + TransactionUtility.updatedCustomerAddress(address);
 			}
 
 			if(!customer.getContactNum().equals(convertedNum)) {
-				System.out.println("Changed phone mumber");
 				customer.setContactNum(convertedNum);
 				changedDetails += "<br>" + TransactionUtility.updatedCustomerPhone(convertedNum);
 			}
