@@ -13,6 +13,7 @@ import com.dollarsbank.controller.WebAppController;
 import com.dollarsbank.model.Account;
 import com.dollarsbank.utility.ErrorUtility;
 import com.dollarsbank.utility.InputCheckUtility;
+import com.dollarsbank.utility.SuccessUtility;
 
 /**
  * Servlet implementation class TransferServe
@@ -52,7 +53,6 @@ public class TransferServe extends HttpServlet {
 		boolean noErrorNumber = false;
 		boolean noErrorUser = false;
 		
-		String errorMessage = "";
 		String errorNumberMessage = "";
 		
 		String destination = "";
@@ -78,13 +78,14 @@ public class TransferServe extends HttpServlet {
 		if(noErrorNumber && noErrorUser) {
 			destination = "home.jsp";
 			WebAppController.transferFunds(account, userTransfer, transfer);
+			request.setAttribute("success", SuccessUtility.successTransfer());
 		} else {
 			destination = "transfer.jsp";
 			if(!noErrorNumber) {
-				request.setAttribute("errorNumber", errorMessage + errorNumberMessage);
+				request.setAttribute("errorNumber", errorNumberMessage);
 			}
 			if(!noErrorUser) {
-				request.setAttribute("errorUser", errorMessage + ErrorUtility.errorUserNotFound());
+				request.setAttribute("errorUser", ErrorUtility.errorUserNotFound());
 			}
 		}
 		

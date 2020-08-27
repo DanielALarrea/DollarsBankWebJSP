@@ -14,15 +14,20 @@
 	<%
 		String userid = request.getParameter("userid");
 		Account account = InputCheckUtility.accountLookUp(userid);
-		
+	
 		float balance = account.getSavings();
+	
+		String success = "";
+		if (request.getAttribute("success") != null) {
+			success = (String) request.getAttribute("success");
+		}
 	%>
 
 	<h1 class="text-center">Hello, <%=userid%></h1>
-	
-<div class="text-center border">
+
+	<div class="text-center border">
 		<div class="border">
-		<h3>Balance: $<%=balance %></h3>
+			<h3>Balance: $<%=balance%></h3>
 			<ul class="list-inline">
 				<li class="list-inline-item">
 					<form action="deposit.jsp" method="post">
@@ -43,9 +48,10 @@
 					</form>
 				</li>
 			</ul>
+			<h2 class="text-center text-success"><%=success %></h2>
 		</div>
 		<div class="border">
-		<h3>Account Information</h3>
+			<h3>Account Information</h3>
 			<ul class="list-inline">
 				<li class="list-inline-item">
 					<form action="transaction.jsp" method="post">
@@ -62,7 +68,7 @@
 			</ul>
 		</div>
 		<a class="btn btn-lg btn-primary" style="width: 20%" href="index.jsp">Sign Out</a>
-</div>
+	</div>
 	<%@include file="footer.html"%>
 </body>
 </html>

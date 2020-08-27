@@ -42,6 +42,10 @@ public class ErrorUtility {
 		return "Password does not match criteria";
 	}
 	
+	public static String errorPasswordMismatch() {
+		return "Passwords do not match";
+	}
+	
 	public static String errorNotPhone() {
 		return "Phone number is not a valid form";
 	}

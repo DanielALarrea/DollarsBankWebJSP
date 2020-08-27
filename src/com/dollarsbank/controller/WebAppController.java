@@ -60,6 +60,10 @@ public class WebAppController {
 		MockDatabase.insertCustomer(name, address, convertedNum, createdAccount);
 	}
 
+	public static void updatePassword(Account account, String updatedPass) {
+		account.setPassword(updatedPass);
+		TransactionUtility.updatedPassword(account, account.getUserId());
+	}
 	
 	public static void displayTransactions(Account account, int x) {
 		System.out.println(account.xMostRecentTransaction(x));

@@ -16,16 +16,16 @@ import com.dollarsbank.utility.InputCheckUtility;
 import com.dollarsbank.utility.SuccessUtility;
 
 /**
- * Servlet implementation class DepositServe
+ * Servlet implementation class PasswordServe
  */
-@WebServlet("/DepositServe")
-public class DepositServe extends HttpServlet {
+@WebServlet("/PasswordServe")
+public class PasswordServe extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DepositServe() {
+    public PasswordServe() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,21 +46,47 @@ public class DepositServe extends HttpServlet {
 //		doGet(request, response);
 		
 		String userid = request.getParameter("userid");
-		String depositString = request.getParameter("deposit");
-		float deposit = 0.0f;
+		String password = request.getParameter("password");
+		String passwordVerify = request.getParameter("passwordVerify");
+		String formPage = request.getParameter("formPage");
+		String returnPage = request.getParameter("returnPage");
+		
+		Account account = new Account();
+		
+		boolean noErrorPass = false;
+		boolean noErrorMatch = false;
+		boolean noErrorUser = false;
 		
 		String destination = "";
 		
-		Account account = InputCheckUtility.accountLookUp(userid);
+		if(InputCheckUtility.isExistingUser(userid)) {
+			noErrorUser = true;
+			account = InputCheckUtility.accountLookUp(userid);
+		}
 		
-		if(InputCheckUtility.isFloat(depositString) && InputCheckUtility.isPositiveNumber(Float.parseFloat(depositString))) {
-			deposit = Float.parseFloat(depositString);
-			destination = "home.jsp";
-			WebAppController.depositToAccount(deposit, account);
-			request.setAttribute("success", SuccessUtility.successDeposit());
+		if(InputCheckUtility.matchesPasswordCriteria(password)) {
+			noErrorPass = true;
+		}
+		
+		if(password.equals(passwordVerify)) {
+			noErrorMatch = true;
+		}
+		
+		if(noErrorUser && noErrorPass && noErrorMatch) {
+			destination = returnPage;
+			WebAppController.updatePassword(account, password);
+			request.setAttribute("success", SuccessUtility.successPasswordUpdate());
 		} else {
-			destination = "deposit.jsp";
-			request.setAttribute("error", ErrorUtility.errorNotPositive());
+			destination = formPage;
+			if(!noErrorPass) {
+				request.setAttribute("errorPass", ErrorUtility.errorNotPasswordCriteria());
+			}
+			if(!noErrorMatch) {
+				request.setAttribute("errorMatch", ErrorUtility.errorPasswordMismatch());
+			}
+			if(!noErrorUser) {
+				request.setAttribute("errorUser", ErrorUtility.errorUserNotFound());
+			}
 		}
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(destination);

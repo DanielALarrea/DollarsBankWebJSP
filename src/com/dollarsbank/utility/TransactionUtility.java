@@ -31,6 +31,11 @@ public class TransactionUtility {
 		accountTo.pushRecentTransaction(transaction);
 	}
 	
+	public static void updatedPassword(Account account, String user) {
+		String transaction = "Updated password for user [" + user + "]";
+		account.pushRecentTransaction(transaction);
+	}
+	
 	public static void updatedCustomerDetails(Account account, String combinedTransactions) {
 		String transaction = "Updated following account details:" + combinedTransactions;
 		account.pushRecentTransaction(transaction);

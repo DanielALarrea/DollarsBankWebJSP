@@ -16,6 +16,11 @@
 		String userid = request.getParameter("userid");
 		Account account = InputCheckUtility.accountLookUp(userid);
 		Customer customer = InputCheckUtility.customerLookUp(account);
+		
+		String success = "";
+		if (request.getAttribute("success") != null) {
+			success = (String) request.getAttribute("success");
+		}
 	%>
 	<div class="text-center">
 		<h3>Customer Information</h3>
@@ -37,10 +42,15 @@
 			</div>
 		</div>
 	</div>
-
+	<div class="text-center text-success"><%=success %></div>
 	<form class="d-flex justify-content-center" action="infoedit.jsp" method="post">
 		<input type="hidden" name="userid" value="<%=userid%>">
 		<button class="btn btn-lg btn-primary" style="width: 20%">Edit</button>
+	</form>
+	
+	<form class="d-flex justify-content-center" action="updatepass.jsp" method="post">
+		<input type="hidden" name="userid" value="<%=userid%>">
+		<button class="btn btn-lg btn-primary" style="width: 20%">Update Password</button>
 	</form>
 
 	<form class="d-flex justify-content-center" action="home.jsp" method="post">

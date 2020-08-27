@@ -56,11 +56,6 @@ public class RegisterServe extends HttpServlet {
 		boolean noErrorPhone = false;
 		boolean noErrorPassword = false;
 		
-		String errorNumberMessage = ErrorUtility.errorNotPositive();
-		String errorUserMessage = ErrorUtility.errorExistingUser();
-		String errorPasswordMessage = ErrorUtility.errorNotPasswordCriteria();
-		String errorPhoneMessage = ErrorUtility.errorNotPhone();
-		
 		String destination = "";
 				
 		if(InputCheckUtility.isFloat(initialDepositString) && InputCheckUtility.isPositiveNumber(Float.parseFloat(initialDepositString))) {
@@ -86,16 +81,16 @@ public class RegisterServe extends HttpServlet {
 		} else {
 			destination = "register.jsp";
 			if(!noErrorNumber) {
-				request.setAttribute("errorNumber", errorNumberMessage);
+				request.setAttribute("errorNumber", ErrorUtility.errorNotPositive());
 			}
 			if(!noErrorUser) {
-				request.setAttribute("errorUser", errorUserMessage);
+				request.setAttribute("errorUser", ErrorUtility.errorExistingUser());
 			}
 			if(!noErrorPhone) {
-				request.setAttribute("errorPhone", errorPhoneMessage);
+				request.setAttribute("errorPhone", ErrorUtility.errorNotPhone());
 			}
 			if(!noErrorPassword) {
-				request.setAttribute("errorPass", errorPasswordMessage);
+				request.setAttribute("errorPass", ErrorUtility.errorNotPasswordCriteria());
 			}
 		}
 		

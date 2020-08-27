@@ -13,12 +13,16 @@
 	<%@include file="header.html"%>
 	<%
 		if (!MockDatabase.checkInit()) {
-		MockDatabase.initDatabase();
-	}
-	String error = "";
-	if (request.getAttribute("error") != null) {
-		error = (String) request.getAttribute("error");
-	}
+			MockDatabase.initDatabase();
+		}
+		String error = "";
+		if (request.getAttribute("error") != null) {
+			error = (String) request.getAttribute("error");
+		}
+		String success = "";
+		if (request.getAttribute("success") != null) {
+			success = (String) request.getAttribute("success");
+		}
 	%>
 
 <div class="border">
@@ -37,14 +41,15 @@
 			</div>
 		</div>
 		<div class="text-danger"><%=error%></div>
+		<div class="text-success"><%=success %></div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button class="btn btn-lg btn-primary">Sign In</button>
 				<a class="btn btn-lg btn-primary" href="register.jsp">Register</a>
+				<a class="btn btn-lg btn-primary" href="forgotpass.jsp">Forgot Password?</a>
 			</div>	
 		</div>
 	</form>
-	
 </div>
 
 	<%@include file="footer.html"%>

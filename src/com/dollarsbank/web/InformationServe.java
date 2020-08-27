@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.dollarsbank.controller.WebAppController;
 import com.dollarsbank.utility.ErrorUtility;
 import com.dollarsbank.utility.InputCheckUtility;
+import com.dollarsbank.utility.SuccessUtility;
 
 /**
  * Servlet implementation class InformationServe
@@ -51,7 +52,6 @@ public class InformationServe extends HttpServlet {
 		String destination = "";
 		
 		boolean noErrorPhone = false;
-		String errorPhoneMessage = ErrorUtility.errorNotPhone();
 		
 		if(InputCheckUtility.isValidPhoneNum(contactNum)) {
 			noErrorPhone = true;
@@ -60,9 +60,10 @@ public class InformationServe extends HttpServlet {
 		if(noErrorPhone) {
 			destination = "information.jsp";
 			WebAppController.changeCustomerDetails(userid, name, address, contactNum);
+			request.setAttribute("success", SuccessUtility.successAccountDetailUpdate());
 		} else {
 			destination = "infoedit.jsp";
-			request.setAttribute("errorPhone", errorPhoneMessage);
+			request.setAttribute("errorPhone", ErrorUtility.errorNotPhone());
 		}
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(destination);
